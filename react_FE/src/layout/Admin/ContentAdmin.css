@@ -1,0 +1,47 @@
+.admin-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+}
+
+/* Phần thân nằm giữa header và footer */
+.admin-body {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  background: #f8fafc;
+}
+
+/* Menu chỉ nằm trong phần thân */
+.admin-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: #111827;
+  color: #ffffff;
+  overflow-y: auto;
+}
+
+/* Nội dung bên phải */
+.admin-content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px;
+  background: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .admin-body {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+  }
+
+  .admin-content {
+    padding: 18px;
+  }
+}

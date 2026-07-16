@@ -1,0 +1,285 @@
+/* Bao phủ toàn bộ màn hình */
+.verify-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fcfaf2 0%, #f4f1e6 100%);
+  padding: 60px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Khung container chính */
+.verify-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 750px; /* Rộng rãi hơn để làm form chia cột */
+  padding: 45px 50px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(217, 119, 6, 0.05);
+}
+
+/* Header trang */
+.verify-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.verify-icon-main {
+  width: 65px;
+  height: 65px;
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin: 0 auto 15px auto;
+}
+
+.verify-header h2 {
+  color: #b45309;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.verify-header p {
+  color: #6c757d;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Từng phân khu nội dung form */
+.verify-section {
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01);
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+
+.section-title i {
+  color: #d97706;
+  font-size: 22px;
+}
+
+.section-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 15px;
+  text-align: left;
+  margin-top: -10px;
+}
+
+/* Ép Label sát lề trái */
+.form-label-custom {
+  display: block;
+  text-align: left;
+  width: 100%;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+/* Nhóm ô nhập liệu chứa icon bên trái */
+.input-group-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: #a0aec0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.verify-input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333333;
+  outline: none;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.verify-input:focus {
+  border-color: #f59e0b;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+}
+
+/* Bố cục lưới cho vùng tải ảnh CCCD */
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 576px) {
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Vùng kéo thả ảnh đứt nét chuyên nghiệp */
+.upload-drag-zone {
+  border: 2px dashed #cbd5e1;
+  background-color: #f8fafc;
+  padding: 25px 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 130px;
+}
+
+.upload-drag-zone:hover {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+.upload-drag-zone input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  transition: color 0.2s ease;
+}
+
+.upload-drag-zone:hover .upload-icon {
+  color: #d97706;
+}
+
+.upload-text {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #475569;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Vùng tải ảnh Sổ Đỏ khổ rộng rộng */
+.solo-upload {
+  padding: 35px 20px;
+}
+
+.upload-icon-large {
+  font-size: 40px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.upload-drag-zone:hover .upload-icon-large {
+  color: #d97706;
+}
+
+.upload-hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+/* Hộp cam kết bảo mật thông tin màu xanh lá dịu mắt */
+.verify-info-note {
+  background-color: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 35px;
+  text-align: left;
+}
+
+.verify-info-note i {
+  color: #16a34a;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.verify-info-note span {
+  color: #166534;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* Dòng chứa 2 nút hành động dưới cùng */
+.verify-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.btn-cancel {
+  padding: 12px 24px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.btn-submit-verify {
+  padding: 12px 30px;
+  background-color: #f59e0b;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-submit-verify:hover {
+  background-color: #d97706;
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-submit-verify:active {
+  transform: translateY(1px);
+}

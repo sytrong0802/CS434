@@ -1,0 +1,292 @@
+/* Khung bao phủ toàn bộ màn hình */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fcfaf2 0%, #f4f1e6 100%); /* Nền ngả vàng kem nhẹ dịu mắt */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  padding: 40px 20px;
+}
+
+/* Nút quay lại trang chủ */
+.btn-back-home {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.btn-back-home:hover {
+  background: #d97706; /* Vàng hổ phách sẫm khi hover */
+  color: #ffffff;
+  border-color: #d97706;
+  transform: translateX(-3px);
+}
+
+/* Khung Card chính của Form Đăng ký */
+.register-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 500px; /* Rộng hơn form login một chút để chứa giao diện Role */
+  padding: 45px 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(217, 119, 6, 0.06); /* Đổ bóng vàng nhẹ */
+}
+
+/* Tiêu đề của Card */
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-icon-box {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(245, 158, 11, 0.12); /* Vàng hổ phách nhạt */
+  color: #d97706;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin: 0 auto 15px auto;
+}
+
+.register-header h3 {
+  color: #b45309; /* Tone màu vàng nâu sẫm lịch sự */
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.register-header p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Ép toàn bộ các dòng Label bám sát lề trái (Start) */
+.form-label-custom {
+  display: block;
+  text-align: left;
+  width: 100%;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+/* Nhóm ô nhập liệu chứa icon bên trái */
+.input-group-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: #a0aec0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.register-input-field {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333333;
+  outline: none;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+/* Khi bấm chọn vào ô input */
+.register-input-field:focus {
+  border-color: #f59e0b; /* Viền vàng */
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+}
+
+/* Khung bọc danh sách lựa chọn Vai trò */
+.role-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+/* Từng thẻ lựa chọn Vai trò (Chuyển thành dạng Card nhỏ mượt mà) */
+.role-card-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  position: relative;
+  text-align: left;
+}
+
+.role-card-item:hover {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+/* Ẩn nút radio mặc định đi để tự custom */
+.role-card-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Khung tròn Radio tự thiết kế lại */
+.role-radio-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  margin-top: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Khi Radio được tích chọn */
+.role-card-item input[type="radio"]:checked ~ .role-radio-custom {
+  border-color: #f59e0b;
+  background-color: #f59e0b;
+}
+
+.role-card-item input[type="radio"]:checked ~ .role-radio-custom::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Khi được chọn thì đổi màu viền cả Card */
+.role-card-item input[type="radio"]:checked {
+  box-shadow: none;
+}
+.role-card-item:has(input[type="radio"]:checked) {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+/* Chi tiết chữ bên trong vai trò */
+.role-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-title {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.role-desc {
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* Hộp thông báo lưu ý nhỏ bên dưới vai trò */
+.register-note-box {
+  background-color: #fef3c7; /* Vàng nhạt cảnh báo */
+  border-left: 4px solid #d97706;
+  padding: 12px 15px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.register-note-box i {
+  color: #d97706;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.register-note-box span {
+  color: #92400e;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+/* Nút Đăng Ký Hệ Thống */
+.register-submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #f59e0b; /* Màu vàng hổ phách sáng */
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+  transition: all 0.2s ease;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.register-submit-btn:hover {
+  background-color: #d97706; /* Màu sậm hơn khi di chuột */
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.35);
+  transform: translateY(-1px);
+}
+
+.register-submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Phần chuyển hướng Đăng nhập */
+.register-footer-text {
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.login-now-link {
+  color: #d97706;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 3px;
+  transition: color 0.2s ease;
+}
+
+.login-now-link:hover {
+  color: #b45309;
+  text-decoration: underline;
+}

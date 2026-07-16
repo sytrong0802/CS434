@@ -1,0 +1,43 @@
+/* Nút Đăng Nhập */
+.btn-dang-nhap {
+  background-color: #1e3a8a;
+  color: #ffffff !important;
+  border: 2px solid #1e3a8a;
+  padding: 14px 36px;
+  border-radius: 50px;
+  width: 150px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;         /* Làm đậm chữ */
+  transition: all 0.3s ease;
+}
+
+.btn-dang-nhap:hover {
+  background-color: #ffffff;
+  color: #1e3a8a !important;
+}
+
+/* Nút Đăng Xuất */
+.btn-dang-xuat {
+  background-color: #ffffff;
+  color: #1e3a8a;
+  border: 2px solid #1e3a8a;
+  padding: 14px 36px;
+  border-radius: 50px;
+  width: 150px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-dang-xuat:hover {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}

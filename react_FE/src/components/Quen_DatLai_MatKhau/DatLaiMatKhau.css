@@ -1,0 +1,196 @@
+/* Khung bao phủ toàn bộ màn hình */
+.reset-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f4f6f9 0%, #e9ecef 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  padding: 20px;
+}
+
+/* Nút quay lại trang chủ */
+.btn-back-home {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.btn-back-home:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+  border-color: #1e3a8a;
+  transform: translateX(-3px);
+}
+
+/* Khung Card chính chứa Form */
+.reset-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 450px;
+  padding: 40px 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.08);
+}
+
+/* Header của Card */
+.reset-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.reset-icon-box {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(30, 58, 138, 0.1);
+  color: #1e3a8a;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin: 0 auto 15px auto;
+}
+
+.reset-header h3 {
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.reset-header p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Ép toàn bộ các dòng Label bám sát lề trái */
+.form-label-custom {
+  display: block;
+  text-align: left;
+  width: 100%;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+/* Nhóm ô nhập liệu chứa icon bên góc trái */
+.input-group-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: #a0aec0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.reset-input-field {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333333;
+  outline: none;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.reset-input-field:focus {
+  border-color: #1e3a8a;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15);
+}
+
+/* Khung ghi chú mật khẩu an toàn màu xanh lá dịu mắt */
+.reset-note-box {
+  background-color: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  padding: 12px 15px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.reset-note-box i {
+  color: #16a34a;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.reset-note-box span {
+  color: #166534;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* Nút xác nhận đặt lại mật khẩu */
+.reset-submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+  transition: all 0.2s ease;
+  margin-bottom: 25px;
+}
+
+.reset-submit-btn:hover {
+  background-color: #2563eb;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.reset-submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Phần Footer gửi lại mã */
+.reset-footer-text {
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.resend-code-link {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 3px;
+  transition: color 0.2s ease;
+}
+
+.resend-code-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}

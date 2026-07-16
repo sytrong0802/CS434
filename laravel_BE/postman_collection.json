@@ -1,0 +1,3541 @@
+{
+    "info": {
+        "_postman_id": "6f9e2266-95ea-4e2f-bd2c-8b8bbd64f4df",
+        "name": "Web TimKiem QuanLy PhongTro API - v3",
+        "description": "Tự động tạo từ danh sách route thực tế trong Laravel.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Register - Auth",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/register",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "register"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\AuthController@register`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **ho_ten** (required, string): Họ tên đầy đủ\n- **email** (required, string): Email duy nhất\n- **so_dien_thoai** (required, string): Số điện thoại duy nhất\n- **mat_khau** (required, string): Mật khẩu (tối thiểu 6 ký tự)\n- **vai_tro** (required, string): Vai trò đăng ký (KHACH_HANG hoặc CHU_TRO)\n- **avatar_url** (optional, string): Đường dẫn ảnh đại diện\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ho_ten\": \"Nguyen Van A\",\n    \"email\": \"register@example.com\",\n    \"so_dien_thoai\": \"0912345678\",\n    \"mat_khau\": \"123456\",\n    \"vai_tro\": \"KHACH_HANG\",\n    \"avatar_url\": \"https:\\\/\\\/example.com\\\/avatar.jpg\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login - Auth",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/login",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "login"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\AuthController@login`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **email** (required, string): Email hoặc số điện thoại đăng nhập\n- **mat_khau** (required, string): Mật khẩu đăng nhập\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"user@example.com\",\n    \"mat_khau\": \"123456\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout - Auth",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/logout",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "logout"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\AuthController@logout`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Email Otp",
+            "item": [
+                {
+                    "name": "Send Otp - Email Otp",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/email-otp\/send-otp",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "email-otp",
+                                "send-otp"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\EmailOtpController@sendOtp`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **email** (required, string): \n- **muc_dich** (required, string): Options: DANG_KY,QUEN_MAT_KHAU\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"user@example.com\",\n    \"muc_dich\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Verify Otp - Email Otp",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/email-otp\/verify-otp",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "email-otp",
+                                "verify-otp"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\EmailOtpController@verifyOtp`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **email** (required, string): \n- **otp** (required, string): \n- **muc_dich** (required, string): Options: DANG_KY,QUEN_MAT_KHAU\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"user@example.com\",\n    \"otp\": \"string\",\n    \"muc_dich\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Tinh Thanh",
+            "item": [
+                {
+                    "name": "Index - Tinh Thanh",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tinh-thanh",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tinh-thanh"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinhThanhController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Quan Huyen",
+            "item": [
+                {
+                    "name": "Index - Quan Huyen",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/quan-huyen",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "quan-huyen"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\QuanHuyenController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **tinh_thanh_id** (required, string): \n"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Phuong Xa",
+            "item": [
+                {
+                    "name": "Index - Phuong Xa",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phuong-xa",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phuong-xa"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhuongXaController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **quan_huyen_id** (required, string): \n"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Tin Dang",
+            "item": [
+                {
+                    "name": "Index - Tin Dang",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show - Tin Dang",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangController@show`.\n\n**Security settings**:\n- Middlewares: api\n\n"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Change Status - Tin Dang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/tin-dang\/change-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "tin-dang",
+                                "change-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangController@changeStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **trang_thai** (required, string): Options: HIEN_THI,TU_CHOI,AN_HIEN_THI\n- **ly_do_tu_choi** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"trang_thai\": \"string\",\n    \"ly_do_tu_choi\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "My Listings - Tin Dang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang\/my-listings",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang",
+                                "my-listings"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangController@myListings`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Tin Dang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tieu_de** (required, string): \n- **mo_ta** (optional, string): \n- **dia_chi_chi_tiet** (required, string): \n- **phuong_xa_id** (required, string): \n- **quan_huyen_id** (required, string): \n- **tinh_thanh_id** (required, string): \n- **gia_thue_min** (required, number): \n- **dien_tich_min** (optional, number): \n- **loai_phong** (required, string): Options: PHONG_TRO,CHUNG_CU_MINI,NHA_NGUYEN_CAN,KY_TUC_XA,CAN_HO_DICH_VU\n- **tinh_trang_noi_that** (required, string): Options: TRONG,CO_BAN,DAY_DU,CAO_CAP\n- **anh_dai_dien** (optional, string): \n- **vi_do** (optional, number): \n- **kinh_do** (optional, number): \n- **ten_lien_he** (optional, string): \n- **so_dien_thoai_lien_he** (optional, string): \n- **tien_ich_ids** (optional, string): \n- **tien_ich_ids.*** (optional, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tieu_de\": \"string\",\n    \"mo_ta\": \"string\",\n    \"dia_chi_chi_tiet\": \"string\",\n    \"phuong_xa_id\": 1,\n    \"quan_huyen_id\": 1,\n    \"tinh_thanh_id\": 1,\n    \"gia_thue_min\": 0,\n    \"dien_tich_min\": 0,\n    \"loai_phong\": \"string\",\n    \"tinh_trang_noi_that\": \"string\",\n    \"anh_dai_dien\": \"string\",\n    \"vi_do\": 0,\n    \"kinh_do\": 0,\n    \"ten_lien_he\": \"string\",\n    \"so_dien_thoai_lien_he\": \"string\",\n    \"tien_ich_ids\": 1,\n    \"tien_ich_ids.*\": 0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Tin Dang",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n- **tieu_de** (required, string): \n- **mo_ta** (optional, string): \n- **dia_chi_chi_tiet** (required, string): \n- **phuong_xa_id** (required, string): \n- **quan_huyen_id** (required, string): \n- **tinh_thanh_id** (required, string): \n- **gia_thue_min** (required, number): \n- **dien_tich_min** (optional, number): \n- **loai_phong** (required, string): Options: PHONG_TRO,CHUNG_CU_MINI,NHA_NGUYEN_CAN,KY_TUC_XA,CAN_HO_DICH_VU\n- **tinh_trang_noi_that** (required, string): Options: TRONG,CO_BAN,DAY_DU,CAO_CAP\n- **anh_dai_dien** (optional, string): \n- **vi_do** (optional, number): \n- **kinh_do** (optional, number): \n- **ten_lien_he** (optional, string): \n- **so_dien_thoai_lien_he** (optional, string): \n- **tien_ich_ids** (optional, string): \n- **tien_ich_ids.*** (optional, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"tieu_de\": \"string\",\n    \"mo_ta\": \"string\",\n    \"dia_chi_chi_tiet\": \"string\",\n    \"phuong_xa_id\": 1,\n    \"quan_huyen_id\": 1,\n    \"tinh_thanh_id\": 1,\n    \"gia_thue_min\": 0,\n    \"dien_tich_min\": 0,\n    \"loai_phong\": \"string\",\n    \"tinh_trang_noi_that\": \"string\",\n    \"anh_dai_dien\": \"string\",\n    \"vi_do\": 0,\n    \"kinh_do\": 0,\n    \"ten_lien_he\": \"string\",\n    \"so_dien_thoai_lien_he\": \"string\",\n    \"tien_ich_ids\": 1,\n    \"tien_ich_ids.*\": 0\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Danh Gia",
+            "item": [
+                {
+                    "name": "Index - Danh Gia",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/danh-gia",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "danh-gia"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\DanhGiaController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Danh Gia",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/danh-gia",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "danh-gia"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\DanhGiaController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **so_sao** (required, number): \n- **binh_luan** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"so_sao\": 0,\n    \"binh_luan\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Danh Gia",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/danh-gia\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "danh-gia",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\DanhGiaController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Tien Ich",
+            "item": [
+                {
+                    "name": "Index - Tien Ich",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tien-ich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tien-ich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TienIchController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Tien Ich",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/tien-ich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "tien-ich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TienIchController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **ten_tien_ich** (required, string): \n- **bieu_tuong** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ten_tien_ich\": \"string\",\n    \"bieu_tuong\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Tien Ich",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/tien-ich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "tien-ich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TienIchController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **ten_tien_ich** (required, string): \n- **bieu_tuong** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ten_tien_ich\": \"string\",\n    \"bieu_tuong\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Tien Ich",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/tien-ich\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "tien-ich",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TienIchController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Goi Dich Vu",
+            "item": [
+                {
+                    "name": "Index - Goi Dich Vu",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/goi-dich-vu",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "goi-dich-vu"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\GoiDichVuController@index`.\n\n**Security settings**:\n- Middlewares: api\n\n"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Goi Dich Vu",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/goi-dich-vu",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "goi-dich-vu"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\GoiDichVuController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **ten_goi** (required, string): \n- **mo_ta** (optional, string): \n- **gia_tien** (required, number): \n- **so_ngay_hieu_luc** (required, number): \n- **do_uu_tien** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ten_goi\": \"string\",\n    \"mo_ta\": \"string\",\n    \"gia_tien\": 0,\n    \"so_ngay_hieu_luc\": 0,\n    \"do_uu_tien\": 0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Goi Dich Vu",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/goi-dich-vu",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "goi-dich-vu"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\GoiDichVuController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **ten_goi** (required, string): \n- **mo_ta** (optional, string): \n- **gia_tien** (required, number): \n- **so_ngay_hieu_luc** (required, number): \n- **do_uu_tien** (required, number): \n- **trang_thai** (required, string): Options: HOAT_DONG,NGUNG_CUNG_CAP\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ten_goi\": \"string\",\n    \"mo_ta\": \"string\",\n    \"gia_tien\": 0,\n    \"so_ngay_hieu_luc\": 0,\n    \"do_uu_tien\": 0,\n    \"trang_thai\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Goi Dich Vu",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/goi-dich-vu\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "goi-dich-vu",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\GoiDichVuController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Bao Cao Vi Pham",
+            "item": [
+                {
+                    "name": "Index - Bao Cao Vi Pham",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/bao-cao-vi-pham",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "bao-cao-vi-pham"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\BaoCaoViPhamController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Status - Bao Cao Vi Pham",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/bao-cao-vi-pham\/update-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "bao-cao-vi-pham",
+                                "update-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\BaoCaoViPhamController@updateStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **trang_thai** (required, string): Options: DA_XU_LY,TU_CHOI\n- **ghi_chu_admin** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"trang_thai\": \"string\",\n    \"ghi_chu_admin\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Bao Cao Vi Pham",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/bao-cao-vi-pham",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bao-cao-vi-pham"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\BaoCaoViPhamController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **ly_do** (required, string): Options: SAI_THONG_TIN,PHONG_KHONG_TON_TAI,LUA_DAO,SAI_GIA,SAI_HINH_ANH,CHU_TRO_KHONG_PHU_HOP,KHAC\n- **mo_ta** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"ly_do\": \"string\",\n    \"mo_ta\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Chu Tro",
+            "item": [
+                {
+                    "name": "Index - Chu Tro",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/chu-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "chu-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ChuTroController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Chu Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/chu-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "chu-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ChuTroController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **ho_ten** (required, string): \n- **email** (required, string): \n- **so_dien_thoai** (optional, string): \n- **mat_khau** (required, string): \n- **avatar_url** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ho_ten\": \"string\",\n    \"email\": \"user@example.com\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"mat_khau\": \"string\",\n    \"avatar_url\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Chu Tro",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/chu-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "chu-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ChuTroController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **ho_ten** (required, string): \n- **email** (required, string): \n- **so_dien_thoai** (optional, string): \n- **mat_khau** (optional, string): \n- **avatar_url** (optional, string): \n- **trang_thai** (required, string): Options: HOAT_DONG,BI_KHOA,CHO_XAC_THUC\n- **ly_do_khoa** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ho_ten\": \"string\",\n    \"email\": \"user@example.com\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"mat_khau\": \"string\",\n    \"avatar_url\": \"string\",\n    \"trang_thai\": \"string\",\n    \"ly_do_khoa\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Chu Tro",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/chu-tro\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "chu-tro",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ChuTroController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Change Status - Chu Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/chu-tro\/change-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "chu-tro",
+                                "change-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ChuTroController@changeStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **trang_thai** (required, string): Options: HOAT_DONG,BI_KHOA,CHO_XAC_THUC\n- **ly_do_khoa** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"trang_thai\": \"string\",\n    \"ly_do_khoa\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Khach Hang",
+            "item": [
+                {
+                    "name": "Index - Khach Hang",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/khach-hang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "khach-hang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\KhachHangController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store - Khach Hang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/khach-hang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "khach-hang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\KhachHangController@store`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **ho_ten** (required, string): \n- **email** (required, string): \n- **so_dien_thoai** (optional, string): \n- **mat_khau** (required, string): \n- **avatar_url** (optional, string): \n- **vai_tro** (optional, string): Options: KHACH_HANG,CHU_TRO,ADMIN\n- **so_du** (optional, number): \n- **trang_thai** (optional, string): Options: HOAT_DONG,BI_KHOA,CHO_XAC_THUC,DA_XOA\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ho_ten\": \"string\",\n    \"email\": \"user@example.com\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"mat_khau\": \"string\",\n    \"avatar_url\": \"string\",\n    \"vai_tro\": \"string\",\n    \"so_du\": 0,\n    \"trang_thai\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Khach Hang",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/khach-hang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "khach-hang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\KhachHangController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **ho_ten** (required, string): \n- **email** (required, string): \n- **so_dien_thoai** (optional, string): \n- **mat_khau** (optional, string): \n- **avatar_url** (optional, string): \n- **trang_thai** (required, string): Options: HOAT_DONG,BI_KHOA,CHO_XAC_THUC\n- **ly_do_khoa** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ho_ten\": \"string\",\n    \"email\": \"user@example.com\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"mat_khau\": \"string\",\n    \"avatar_url\": \"string\",\n    \"trang_thai\": \"string\",\n    \"ly_do_khoa\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Destroy - Khach Hang",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/khach-hang\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "khach-hang",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\KhachHangController@destroy`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Change Status - Khach Hang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/khach-hang\/change-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "khach-hang",
+                                "change-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\KhachHangController@changeStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **id** (required, number): \n- **trang_thai** (required, string): Options: HOAT_DONG,BI_KHOA,CHO_XAC_THUC\n- **ly_do_khoa** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"trang_thai\": \"string\",\n    \"ly_do_khoa\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Tim So Dien Thoai - Khach Hang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/khach-hang\/tim-so-dien-thoai",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "khach-hang",
+                                "tim-so-dien-thoai"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\KhachHangController@timSoDienThoai`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Thong Tin Chu Tro",
+            "item": [
+                {
+                    "name": "Update Status - Thong Tin Chu Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/thong-tin-chu-tro\/update-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "thong-tin-chu-tro",
+                                "update-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ThongTinChuTroController@updateStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n**Validation rules**:\n- **user_id** (required, number): \n- **trang_thai_kyc** (required, string): Options: DA_XAC_MINH,BI_TU_CHOI\n- **ly_do_tu_choi** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": 0,\n    \"trang_thai_kyc\": \"string\",\n    \"ly_do_tu_choi\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show - Thong Tin Chu Tro",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/thong-tin-chu-tro\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "thong-tin-chu-tro",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ThongTinChuTroController@show`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store - Thong Tin Chu Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/thong-tin-chu-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "thong-tin-chu-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ThongTinChuTroController@store`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **so_cccd_passport** (required, string): \n- **ho_ten_khai_sinh** (required, string): \n- **ngay_cap** (required, string): \n- **noi_cap** (required, string): \n- **anh_cccd_mat_truoc** (required, string): \n- **anh_cccd_mat_sau** (required, string): \n- **anh_chan_dung_hop_dong** (optional, string): \n- **ten_ngan_hang** (required, string): \n- **so_tai_khoan** (required, string): \n- **ten_chu_tai_khoan** (required, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"so_cccd_passport\": \"string\",\n    \"ho_ten_khai_sinh\": \"string\",\n    \"ngay_cap\": \"string\",\n    \"noi_cap\": \"string\",\n    \"anh_cccd_mat_truoc\": \"string\",\n    \"anh_cccd_mat_sau\": \"string\",\n    \"anh_chan_dung_hop_dong\": \"string\",\n    \"ten_ngan_hang\": \"string\",\n    \"so_tai_khoan\": \"string\",\n    \"ten_chu_tai_khoan\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "Index - User",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/user",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "user"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\UserController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Destroy - User",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/admin\/user\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "user",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\UserController@destroy`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum, role:ADMIN\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Profile - User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/user\/profile",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "user",
+                                "profile"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\UserController@profile`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **ho_ten** (required, string): \n- **email** (required, string): \n- **so_dien_thoai** (required, string): \n- **password** (required, string): \n- **avatar_url** (required, string): \n- **vai_tro** (required, string): \n- **so_du** (required, number): \n- **trang_thai** (required, string): \n- **ly_do_khoa** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ho_ten\": \"string\",\n    \"email\": \"user@example.com\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"password\": \"string\",\n    \"avatar_url\": \"string\",\n    \"vai_tro\": \"string\",\n    \"so_du\": 0,\n    \"trang_thai\": \"string\",\n    \"ly_do_khoa\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Profile - User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/user\/update-profile",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "user",
+                                "update-profile"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\UserController@updateProfile`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **ho_ten** (required, string): \n- **so_dien_thoai** (optional, string): \n- **avatar_url** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ho_ten\": \"string\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"avatar_url\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Change Password - User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/user\/change-password",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "user",
+                                "change-password"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\UserController@changePassword`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **mat_khau_cu** (required, string): \n- **mat_khau_moi** (required, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"mat_khau_cu\": \"string\",\n    \"mat_khau_moi\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Hinh Anh Tin Dang",
+            "item": [
+                {
+                    "name": "Index - Hinh Anh Tin Dang",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/hinh-anh-tin-dang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "hinh-anh-tin-dang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\HinhAnhTinDangController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store - Hinh Anh Tin Dang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/hinh-anh-tin-dang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "hinh-anh-tin-dang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\HinhAnhTinDangController@store`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **url_anh** (required, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"url_anh\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Hinh Anh Tin Dang",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/hinh-anh-tin-dang\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "hinh-anh-tin-dang",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\HinhAnhTinDangController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Lich Hen Xem Phong",
+            "item": [
+                {
+                    "name": "Index - Lich Hen Xem Phong",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-hen-xem-phong",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-hen-xem-phong"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichHenXemPhongController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Lich Hen Xem Phong",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-hen-xem-phong",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-hen-xem-phong"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichHenXemPhongController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **phong_tro_id** (optional, number): \n- **thoi_gian_hen** (required, string): \n- **loi_nhan** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"phong_tro_id\": 0,\n    \"thoi_gian_hen\": \"string\",\n    \"loi_nhan\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Status - Lich Hen Xem Phong",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-hen-xem-phong\/update-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-hen-xem-phong",
+                                "update-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichHenXemPhongController@updateStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n- **trang_thai** (required, string): Options: DA_CHAP_NHAN,TU_CHOI,DA_HUY,DA_HOAN_THANH\n- **ly_do_tu_choi** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"trang_thai\": \"string\",\n    \"ly_do_tu_choi\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Lich Su Giao Dich",
+            "item": [
+                {
+                    "name": "Index - Lich Su Giao Dich",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-su-giao-dich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-su-giao-dich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichSuGiaoDichController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Deposit - Lich Su Giao Dich",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-su-giao-dich\/deposit",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-su-giao-dich",
+                                "deposit"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichSuGiaoDichController@deposit`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **so_tien** (required, number): \n- **ma_giao_dich_doi_tac** (required, string): \n- **mo_ta** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"so_tien\": 0,\n    \"ma_giao_dich_doi_tac\": \"string\",\n    \"mo_ta\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Lich Su Mua Goi Tin Dang",
+            "item": [
+                {
+                    "name": "Index - Lich Su Mua Goi Tin Dang",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-su-mua-goi-tin-dang",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-su-mua-goi-tin-dang"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichSuMuaGoiTinDangController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Buy Package - Lich Su Mua Goi Tin Dang",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/lich-su-mua-goi-tin-dang\/buy-package",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "lich-su-mua-goi-tin-dang",
+                                "buy-package"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\LichSuMuaGoiTinDangController@buyPackage`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **goi_dich_vu_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"goi_dich_vu_id\": 0\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Nguoi O Phong",
+            "item": [
+                {
+                    "name": "Index - Nguoi O Phong",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nguoi-o-phong",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nguoi-o-phong"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NguoiOPhongController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **phong_tro_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Nguoi O Phong",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nguoi-o-phong",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nguoi-o-phong"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NguoiOPhongController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **phong_tro_id** (required, number): \n- **khach_hang_id** (optional, number): \n- **ho_ten** (required, string): \n- **so_dien_thoai** (required, string): \n- **gioi_tinh** (required, string): Options: NAM,NU\n- **ngay_vao** (required, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"phong_tro_id\": 0,\n    \"khach_hang_id\": 0,\n    \"ho_ten\": \"string\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"gioi_tinh\": \"string\",\n    \"ngay_vao\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Nguoi O Phong",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nguoi-o-phong",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nguoi-o-phong"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NguoiOPhongController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n- **ho_ten** (required, string): \n- **so_dien_thoai** (required, string): \n- **gioi_tinh** (required, string): Options: NAM,NU\n- **ngay_vao** (required, string): \n- **ngay_roi** (optional, string): \n- **trang_thai** (required, string): Options: DANG_O,DA_ROI\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ho_ten\": \"string\",\n    \"so_dien_thoai\": \"0987654321\",\n    \"gioi_tinh\": \"string\",\n    \"ngay_vao\": \"string\",\n    \"ngay_roi\": \"string\",\n    \"trang_thai\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Nguoi O Phong",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nguoi-o-phong\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nguoi-o-phong",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NguoiOPhongController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Nha Tro",
+            "item": [
+                {
+                    "name": "Index - Nha Tro",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nha-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nha-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NhaTroController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Nha Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nha-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nha-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NhaTroController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **ten_nha_tro** (required, string): \n- **dia_chi_chi_tiet** (required, string): \n- **phuong_xa_id** (required, string): \n- **quan_huyen_id** (required, string): \n- **tinh_thanh_id** (required, string): \n- **vi_do** (optional, number): \n- **kinh_do** (optional, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ten_nha_tro\": \"string\",\n    \"dia_chi_chi_tiet\": \"string\",\n    \"phuong_xa_id\": 1,\n    \"quan_huyen_id\": 1,\n    \"tinh_thanh_id\": 1,\n    \"vi_do\": 0,\n    \"kinh_do\": 0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Nha Tro",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nha-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nha-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NhaTroController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n- **ten_nha_tro** (required, string): \n- **dia_chi_chi_tiet** (required, string): \n- **phuong_xa_id** (required, string): \n- **quan_huyen_id** (required, string): \n- **tinh_thanh_id** (required, string): \n- **vi_do** (optional, number): \n- **kinh_do** (optional, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ten_nha_tro\": \"string\",\n    \"dia_chi_chi_tiet\": \"string\",\n    \"phuong_xa_id\": 1,\n    \"quan_huyen_id\": 1,\n    \"tinh_thanh_id\": 1,\n    \"vi_do\": 0,\n    \"kinh_do\": 0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Nha Tro",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/nha-tro\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "nha-tro",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\NhaTroController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Phieu Ho Tro",
+            "item": [
+                {
+                    "name": "Index - Phieu Ho Tro",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phieu-ho-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phieu-ho-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhieuHoTroController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Phieu Ho Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phieu-ho-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phieu-ho-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhieuHoTroController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tieu_de** (required, string): \n- **noi_dung** (required, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tieu_de\": \"string\",\n    \"noi_dung\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Status - Phieu Ho Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phieu-ho-tro\/update-status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phieu-ho-tro",
+                                "update-status"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhieuHoTroController@updateStatus`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n- **trang_thai** (required, string): Options: MOI,DANG_XU_LY,DA_DONG\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"trang_thai\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Phong Tro",
+            "item": [
+                {
+                    "name": "Index - Phong Tro",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phong-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phong-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhongTroController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **nha_tro_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create - Phong Tro",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phong-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phong-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhongTroController@create`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **nha_tro_id** (required, number): \n- **ten_phong** (required, string): \n- **gia_thue** (required, number): \n- **dien_tich** (required, number): \n- **suc_chua_toi_da** (required, number): \n- **gioi_tinh_duoc_thue** (required, string): Options: NAM,NU,KHONG_GIOI_HAN\n- **tinh_trang_noi_that** (required, string): Options: TRONG,CO_BAN,DAY_DU,CAO_CAP\n- **ghi_chu** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nha_tro_id\": 0,\n    \"ten_phong\": \"string\",\n    \"gia_thue\": 0,\n    \"dien_tich\": 0,\n    \"suc_chua_toi_da\": 0,\n    \"gioi_tinh_duoc_thue\": \"string\",\n    \"tinh_trang_noi_that\": \"string\",\n    \"ghi_chu\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update - Phong Tro",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phong-tro",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phong-tro"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhongTroController@update`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n- **ten_phong** (required, string): \n- **gia_thue** (required, number): \n- **dien_tich** (required, number): \n- **trang_thai** (required, string): Options: CON_TRONG,DANG_SUA_CHUA,HET_PHONG\n- **suc_chua_toi_da** (required, number): \n- **gioi_tinh_duoc_thue** (required, string): Options: NAM,NU,KHONG_GIOI_HAN\n- **tinh_trang_noi_that** (required, string): Options: TRONG,CO_BAN,DAY_DU,CAO_CAP\n- **ghi_chu** (optional, string): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"ten_phong\": \"string\",\n    \"gia_thue\": 0,\n    \"dien_tich\": 0,\n    \"trang_thai\": \"string\",\n    \"suc_chua_toi_da\": 0,\n    \"gioi_tinh_duoc_thue\": \"string\",\n    \"tinh_trang_noi_that\": \"string\",\n    \"ghi_chu\": \"string\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Phong Tro",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/phong-tro\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "phong-tro",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\PhongTroController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Thong Bao",
+            "item": [
+                {
+                    "name": "Index - Thong Bao",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/thong-bao",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "thong-bao"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ThongBaoController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Read - Thong Bao",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/thong-bao\/read",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "thong-bao",
+                                "read"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ThongBaoController@read`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Read All - Thong Bao",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/thong-bao\/read-all",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "thong-bao",
+                                "read-all"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\ThongBaoController@readAll`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Tin Dang Tien Ich",
+            "item": [
+                {
+                    "name": "Index - Tin Dang Tien Ich",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang-tien-ich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang-tien-ich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangTienIchController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store - Tin Dang Tien Ich",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang-tien-ich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang-tien-ich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangTienIchController@store`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **tien_ich_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"tien_ich_id\": 0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete - Tin Dang Tien Ich",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/tin-dang-tien-ich\/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "tin-dang-tien-ich",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Route parameter: id"
+                                }
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\TinDangTienIchController@delete`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n- **tien_ich_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0,\n    \"tien_ich_id\": 0\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Yeu Thich",
+            "item": [
+                {
+                    "name": "Index - Yeu Thich",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/yeu-thich",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "yeu-thich"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\YeuThichController@index`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Toggle - Yeu Thich",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}\/api\/yeu-thich\/toggle",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "yeu-thich",
+                                "toggle"
+                            ]
+                        },
+                        "description": "Endpoint mapping to `App\\Http\\Controllers\\YeuThichController@toggle`.\n\n**Security settings**:\n- Middlewares: api, auth:sanctum\n\n**Validation rules**:\n- **tin_dang_id** (required, number): \n",
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{auth_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tin_dang_id\": 0\n}"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http:\/\/localhost:8000",
+            "type": "string"
+        },
+        {
+            "key": "auth_token",
+            "value": "your_sanctum_token_here",
+            "type": "string"
+        }
+    ]
+}

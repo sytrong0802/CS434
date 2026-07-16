@@ -1,0 +1,276 @@
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc; /* Đổi sang màu xám nền nhẹ chuẩn Dashboard */
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+  box-sizing: border-box;
+  padding: 32px 24px; /* Giảm bớt padding để đẩy nội dung lên cao tự nhiên */
+}
+
+/* KHUNG CONTAINER CHÍNH */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Đã bỏ màu nền trắng và box-shadow ở đây để tránh tạo cảm giác khối bị centers hóa */
+}
+
+/* --- MAIN CONTENT HEADER --- */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title-area h1 {
+  font-size: 24px;
+  color: #0f172a;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.title-area p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* --- BỘ LỌC BENTO --- */
+.filter-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filter-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.filter-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.select-wrapper select,
+.filter-fake-input,
+.search-box-inner input {
+  width: 100%;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  outline: none;
+  box-sizing: border-box;
+  height: 42px;
+}
+
+.filter-fake-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+}
+
+.search-box-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.btn-search-go {
+  position: absolute;
+  right: 6px;
+  background-color: #00236f;
+  color: #ffffff;
+  border: none;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- DANH SÁCH THẺ LỊCH HẸN --- */
+.cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.card-inner {
+  display: grid;
+  /* Chia layout thành 3 phần: Thông tin (4 phần), Thời gian (2 phần), Thao tác (3 phần) */
+  grid-template-columns: 4fr 2fr 3fr; 
+  align-items: center;
+  gap: 20px;
+}
+
+/* 1. Thông tin khách hàng */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.user-details h3 {
+  font-size: 16px;
+  margin: 0 0 6px 0;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.meta-row {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.meta-row span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 2. Khối thời gian & Trạng thái */
+.time-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.time-badge.blue-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #1e40af;
+}
+
+.status-pill {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.pill-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* 3. KHỐI NÚT THAO TÁC MỚI THÊM */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Nút xác nhận (Màu xanh lá) */
+.btn-approve {
+  background-color: #10b981;
+  color: white;
+}
+.btn-approve:hover {
+  background-color: #059669;
+}
+
+/* Nút đổi lịch (Màu xanh dương outline) */
+.btn-reschedule {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+.btn-reschedule:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+/* Nút từ chối (Màu đỏ outline nhẹ) */
+.btn-reject {
+  background-color: #fff1f2;
+  color: #e11d48;
+}
+.btn-reject:hover {
+  background-color: #ffe4e6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .filter-bento { 
+    grid-template-columns: 1fr; 
+  }
+  .col-span-2 { 
+    grid-column: span 1; 
+  }
+  .card-inner { 
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+  }
+  .time-status { 
+    align-items: flex-start; 
+  }
+  .card-actions {
+    justify-content: flex-start;
+    width: 100%;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 12px;
+  }
+}
